@@ -1,3 +1,5 @@
+import org.eclipse.jetty.util.LeakDetector.LeakInfo;
+
 //see test cases.
 public class ArraysAreEqual {
     /**
@@ -15,6 +17,17 @@ public class ArraysAreEqual {
      * @return true if the values of a are equal to the values of b.
      */
     public boolean equal(int[] a, int[] b){
-        return false;
+        // If arrays have different lengths, they cannot be equal
+        if (a.length != b.length) {
+            return false;
+        }
+
+        // check elements
+        for (int i = 0; i < a.length ; i++) {
+            if (a[i] != b[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 }
